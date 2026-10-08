@@ -18,6 +18,7 @@ func create_bubble(dir: float = 1, spawn_at: Vector2 = Vector2.ZERO, blue: bool 
 	instance.dir = dir
 	if blue: instance.color = blue_color
 	else: instance.color = green_color
+	instance.color.a = .25
 	bubble_parent.add_child(instance)
 	instance.position = spawn_at
 	return instance

@@ -29,6 +29,8 @@ func  _ready() -> void:
 	bubble_hitbox.body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
+	if contained_enemy != null: return
+	
 	if body is Enemy:
 		body.bubble(self)
 		contained_enemy = body

@@ -32,6 +32,7 @@ shape = SubResource("CircleShape2D_wf1bm")
 [node name="Visuals" type="Node2D" parent="." unique_id=6448172]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1364315870]
+modulate = Color(1, 1, 1, 0.19607843)
 mesh = SubResource("SphereMesh_wf1bm")
 
 [node name="Collision" type="Node2D" parent="." unique_id=1298359596]
