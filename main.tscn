@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dcj8i1iuuxwol"]
+
+[ext_resource type="PackedScene" uid="uid://d4dnk3c47l6g2" path="res://entities/2d_sidescroller_player/side_scroller_player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ccpkkxom288vs" path="res://entities/dev_block/dev_block.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d677j00tb5t1" path="res://entities/enemies/enemy.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://q6pxj8u1eaa3" path="res://entities/bubble/bubble.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://4t2mjk38cwv6" path="res://common/classes/bubble_factory.gd" id="5_lquwl"]
+
+[node name="Main" type="Node2D" unique_id=1558682176]
+
+[node name="Player" parent="." unique_id=1492643892 node_paths=PackedStringArray("respawn_point") instance=ExtResource("1_ig7tw")]
+position = Vector2(229, 838)
+respawn_point = NodePath("../P1_Spawn")
+jump_action = "p1_jump"
+shoot_action = "p1_shoot"
+
+[node name="Player2" parent="." unique_id=1505119479 node_paths=PackedStringArray("respawn_point") instance=ExtResource("1_ig7tw")]
+position = Vector2(1463, 874.00006)
+rotation = -0.049040884
+respawn_point = NodePath("../P2_Spawn")
+player_2 = true
+left_action = "p2_left"
+right_action = "p2_right"
+jump_action = "p2_jump"
+shoot_action = "p2_shoot"
+
+[node name="DevBlock" parent="." unique_id=16391351 instance=ExtResource("2_0xm2m")]
+position = Vector2(956, 1008)
+
+[node name="DevBlock2" parent="." unique_id=2093066493 instance=ExtResource("2_0xm2m")]
+position = Vector2(890, 421)
+size = Vector2(512, 512)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1835216301]
+offset = Vector2(960, 540)
+position_smoothing_enabled = true
+
+[node name="Enemy" parent="." unique_id=745952900 instance=ExtResource("3_h2yge")]
+position = Vector2(754, 893)
+
+[node name="P1_Spawn" type="Marker2D" parent="." unique_id=1889745537]
+position = Vector2(70, 850)
+
+[node name="P2_Spawn" type="Marker2D" parent="." unique_id=569992815]
+position = Vector2(1850, 849)
+
+[node name="Actor" parent="." unique_id=1732808407 instance=ExtResource("4_1bvp3")]
+position = Vector2(2, 0)
+
+[node name="BubbleFactory" type="Node2D" parent="." unique_id=920205361]
+script = ExtResource("5_lquwl")
+
+[node name="BubbleParent" type="Node2D" parent="." unique_id=1674575069 groups=["bubble_parent"]]

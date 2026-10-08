@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://q6pxj8u1eaa3"]
+
+[ext_resource type="Script" uid="uid://b48meudq22cdt" path="res://entities/bubble/bubble.gd" id="1_l7s23"]
+[ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="2_neirl"]
+[ext_resource type="Script" uid="uid://swhv3st1eoen" path="res://common/components/core/move_component2D.gd" id="3_neirl"]
+[ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="4_6487u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wf1bm"]
+radius = 25.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wf1bm"]
+radius = 25.0
+height = 50.0
+
+[node name="Bubble" type="Area2D" unique_id=1975863081 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer")]
+script = ExtResource("1_l7s23")
+move_component = NodePath("Management/MoveComponent2D")
+stat_component = NodePath("Management/StatComponent")
+initial_bubble_timer = NodePath("Management/InitialBubbleTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=984094824]
+shape = SubResource("CircleShape2D_wf1bm")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=6448172]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Visuals" unique_id=1364315870]
+mesh = SubResource("SphereMesh_wf1bm")
+
+[node name="Collision" type="Node2D" parent="." unique_id=1298359596]
+
+[node name="Management" type="Node" parent="." unique_id=847603274]
+
+[node name="StatComponent" type="Node" parent="Management" unique_id=1774208970]
+unique_name_in_owner = true
+script = ExtResource("2_neirl")
+stats = {
+"float_speed": 200.0,
+"health": 10,
+"max_health": 10,
+"move_speed": 2000.0
+}
+metadata/_custom_type_script = "uid://db5bkie8hvadi"
+
+[node name="MoveComponent2D" type="Node" parent="Management" unique_id=422147812 node_paths=PackedStringArray("actor", "stat_component")]
+unique_name_in_owner = true
+script = ExtResource("3_neirl")
+actor = NodePath("../..")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://swhv3st1eoen"
+
+[node name="HealthComponent" type="Node" parent="Management" unique_id=1642764723 node_paths=PackedStringArray("stat_component")]
+unique_name_in_owner = true
+script = ExtResource("4_6487u")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://dhmfg2xmqyv2c"
+
+[node name="InitialBubbleTimer" type="Timer" parent="Management" unique_id=1067200795]
+wait_time = 0.25
+one_shot = true
+autostart = true

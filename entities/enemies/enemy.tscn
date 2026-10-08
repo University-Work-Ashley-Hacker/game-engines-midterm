@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://d677j00tb5t1"]
+
+[ext_resource type="Texture2D" uid="uid://1m2ff08nkayp" path="res://icon.svg" id="1_owq46"]
+[ext_resource type="Script" uid="uid://briolox8g0vka" path="res://entities/enemies/enemy.gd" id="1_twyc1"]
+[ext_resource type="Script" uid="uid://cpqris6g4mav5" path="res://common/components/core/hitbox_component_2d.gd" id="2_wqcwe"]
+[ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="3_msovg"]
+[ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="4_twyc1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
+radius = 44.181442
+
+[node name="Enemy" type="CharacterBody2D" unique_id=745952900 node_paths=PackedStringArray("bubble_timer")]
+collision_layer = 4
+script = ExtResource("1_twyc1")
+bubble_timer = NodePath("Management/AITImer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584254688]
+shape = SubResource("CircleShape2D_wqcwe")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1420516198]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=656566636]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_owq46")
+
+[node name="Collision" type="Node2D" parent="." unique_id=1401928349]
+
+[node name="HitboxComponent2D" type="Area2D" parent="Collision" unique_id=106565517]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("2_wqcwe")
+damage = 1
+active = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collision/HitboxComponent2D" unique_id=2111902553]
+shape = SubResource("CircleShape2D_h2yge")
+
+[node name="Management" type="Node" parent="." unique_id=1918389287]
+
+[node name="StatComponent" type="Node" parent="Management" unique_id=155062236]
+unique_name_in_owner = true
+script = ExtResource("3_msovg")
+metadata/_custom_type_script = "uid://db5bkie8hvadi"
+
+[node name="HealthComponent" type="Node" parent="Management" unique_id=118116707 node_paths=PackedStringArray("stat_component")]
+unique_name_in_owner = true
+script = ExtResource("4_twyc1")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://dhmfg2xmqyv2c"
+
+[node name="AITImer" type="Timer" parent="Management" unique_id=2041634986]

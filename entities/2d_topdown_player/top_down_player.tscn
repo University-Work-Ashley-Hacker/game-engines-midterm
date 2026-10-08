@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dgfmw0ue3v44e"]
+
+[ext_resource type="Texture2D" uid="uid://csymv46hdn23x" path="res://misc/SteamHappy.png" id="1_gyrd6"]
+[ext_resource type="Script" uid="uid://pdl6gv84otmj" path="res://entities/2d_topdown_player/top_down_player.gd" id="1_w4mo7"]
+[ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="2_w4mo7"]
+[ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="3_qyrmr"]
+[ext_resource type="Script" uid="uid://swhv3st1eoen" path="res://common/components/core/move_component2D.gd" id="4_xckg0"]
+[ext_resource type="Script" uid="uid://d2cbp7eaf67v1" path="res://common/components/core/lerp_component.gd" id="5_vafo3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7x0ag"]
+radius = 50.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1505119479 node_paths=PackedStringArray("move_component", "stat_component")]
+script = ExtResource("1_w4mo7")
+move_component = NodePath("Management/MoveComponent2D")
+stat_component = NodePath("Management/StatComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1660671401]
+shape = SubResource("CircleShape2D_7x0ag")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=966469844]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=164990774]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_gyrd6")
+
+[node name="Collision" type="Node2D" parent="." unique_id=1968288455]
+
+[node name="Management" type="Node" parent="." unique_id=489887888]
+
+[node name="StatComponent" type="Node" parent="Management" unique_id=121946634]
+unique_name_in_owner = true
+script = ExtResource("2_w4mo7")
+stats = {
+"health": 10,
+"jump_velocity": -1200.0,
+"max_health": 10,
+"move_speed": 600.0
+}
+metadata/_custom_type_script = "uid://db5bkie8hvadi"
+
+[node name="HealthComponent" type="Node" parent="Management" unique_id=2099576125 node_paths=PackedStringArray("stat_component")]
+unique_name_in_owner = true
+script = ExtResource("3_qyrmr")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://dhmfg2xmqyv2c"
+
+[node name="MoveComponent2D" type="Node" parent="Management" unique_id=162222638 node_paths=PackedStringArray("actor", "stat_component")]
+unique_name_in_owner = true
+script = ExtResource("4_xckg0")
+actor = NodePath("../..")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://swhv3st1eoen"
+
+[node name="LerpComponent" type="Node" parent="Management" unique_id=97948574 node_paths=PackedStringArray("display", "move_to")]
+script = ExtResource("5_vafo3")
+display = NodePath("../../Visuals/Sprite2D")
+move_to = NodePath("../..")
+metadata/_custom_type_script = "uid://d2cbp7eaf67v1"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=780788510]
+position_smoothing_enabled = true

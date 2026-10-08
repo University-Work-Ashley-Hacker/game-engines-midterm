@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://d4dnk3c47l6g2"]
+
+[ext_resource type="Texture2D" uid="uid://csymv46hdn23x" path="res://misc/SteamHappy.png" id="1_2n2n2"]
+[ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="1_qrilc"]
+[ext_resource type="Script" uid="uid://dvrmhccwof1ui" path="res://entities/2d_sidescroller_player/sidescroller_2d_player.gd" id="1_up3c8"]
+[ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="2_2n2n2"]
+[ext_resource type="Script" uid="uid://ohndxl0y81dc" path="res://common/components/core/hurtbox_component_2d.gd" id="3_4k6dc"]
+[ext_resource type="Script" uid="uid://swhv3st1eoen" path="res://common/components/core/move_component2D.gd" id="3_up3c8"]
+[ext_resource type="Script" uid="uid://d2cbp7eaf67v1" path="res://common/components/core/lerp_component.gd" id="6_6j15o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7x0ag"]
+radius = 50.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1505119479 node_paths=PackedStringArray("move_component", "stat_component", "health_component")]
+collision_layer = 2
+script = ExtResource("1_up3c8")
+move_component = NodePath("Management/MoveComponent2D")
+stat_component = NodePath("Management/StatComponent")
+health_component = NodePath("Management/HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1660671401]
+shape = SubResource("CircleShape2D_7x0ag")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=966469844]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=164990774]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2n2n2")
+
+[node name="Collision" type="Node2D" parent="." unique_id=1968288455]
+
+[node name="HurtboxComponent2D" type="Area2D" parent="Collision" unique_id=1665226173 node_paths=PackedStringArray("health_component")]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("3_4k6dc")
+health_component = NodePath("../../Management/HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/HurtboxComponent2D" unique_id=1352360381]
+shape = SubResource("CircleShape2D_7x0ag")
+
+[node name="Management" type="Node" parent="." unique_id=489887888]
+
+[node name="StatComponent" type="Node" parent="Management" unique_id=121946634]
+unique_name_in_owner = true
+script = ExtResource("1_qrilc")
+stats = {
+"health": 1,
+"jump_velocity": -1200.0,
+"lives": 2,
+"max_health": 1,
+"move_speed": 600.0
+}
+metadata/_custom_type_script = "uid://db5bkie8hvadi"
+
+[node name="HealthComponent" type="Node" parent="Management" unique_id=2099576125 node_paths=PackedStringArray("stat_component")]
+unique_name_in_owner = true
+script = ExtResource("2_2n2n2")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://dhmfg2xmqyv2c"
+
+[node name="MoveComponent2D" type="Node" parent="Management" unique_id=162222638 node_paths=PackedStringArray("actor", "stat_component")]
+unique_name_in_owner = true
+script = ExtResource("3_up3c8")
+actor = NodePath("../..")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://swhv3st1eoen"
+
+[node name="LerpComponent" type="Node" parent="Management" unique_id=97948574 node_paths=PackedStringArray("display", "move_to")]
+script = ExtResource("6_6j15o")
+display = NodePath("../../Visuals/Sprite2D")
+move_to = NodePath("../..")
+metadata/_custom_type_script = "uid://d2cbp7eaf67v1"
