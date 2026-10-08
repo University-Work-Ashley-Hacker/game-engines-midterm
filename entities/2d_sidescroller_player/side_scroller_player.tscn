@@ -11,12 +11,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7x0ag"]
 radius = 50.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1505119479 node_paths=PackedStringArray("move_component", "stat_component", "health_component")]
+[node name="Player" type="CharacterBody2D" unique_id=1505119479 node_paths=PackedStringArray("move_component", "stat_component", "health_component", "pop_area", "pop_col")]
 collision_layer = 2
 script = ExtResource("1_up3c8")
 move_component = NodePath("Management/MoveComponent2D")
 stat_component = NodePath("Management/StatComponent")
 health_component = NodePath("Management/HealthComponent")
+pop_area = NodePath("Collision/PopArea")
+pop_col = NodePath("Collision/PopArea/CollisionShape2D2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1660671401]
 shape = SubResource("CircleShape2D_7x0ag")
@@ -36,6 +38,13 @@ script = ExtResource("3_4k6dc")
 health_component = NodePath("../../Management/HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/HurtboxComponent2D" unique_id=1352360381]
+shape = SubResource("CircleShape2D_7x0ag")
+
+[node name="PopArea" type="Area2D" parent="Collision" unique_id=2013142472]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collision/PopArea" unique_id=806287152]
 shape = SubResource("CircleShape2D_7x0ag")
 
 [node name="Management" type="Node" parent="." unique_id=489887888]

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d677j00tb5t1" path="res://entities/enemies/enemy.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://q6pxj8u1eaa3" path="res://entities/bubble/bubble.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://4t2mjk38cwv6" path="res://common/classes/bubble_factory.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://pcbhlg7fkeg2" path="res://entities/score_label/score_label.gd" id="6_7mycd"]
 
 [node name="Main" type="Node2D" unique_id=1558682176]
 
@@ -27,16 +28,57 @@ shoot_action = "p2_shoot"
 [node name="DevBlock" parent="." unique_id=16391351 instance=ExtResource("2_0xm2m")]
 position = Vector2(956, 1008)
 
+[node name="DevBlock5" parent="." unique_id=784514308 instance=ExtResource("2_0xm2m")]
+position = Vector2(259, 637)
+size = Vector2(512, 32)
+
+[node name="DevBlock6" parent="." unique_id=1063934 instance=ExtResource("2_0xm2m")]
+position = Vector2(1661, 637)
+size = Vector2(512, 32)
+
+[node name="DevBlock7" parent="." unique_id=308746549 instance=ExtResource("2_0xm2m")]
+position = Vector2(1796, 311)
+size = Vector2(256, 32)
+
+[node name="DevBlock8" parent="." unique_id=1396966450 instance=ExtResource("2_0xm2m")]
+position = Vector2(122, 311)
+size = Vector2(256, 32)
+
+[node name="DevBlock4" parent="." unique_id=349438254 instance=ExtResource("2_0xm2m")]
+position = Vector2(956, 0)
+
 [node name="DevBlock2" parent="." unique_id=2093066493 instance=ExtResource("2_0xm2m")]
-position = Vector2(890, 421)
-size = Vector2(512, 512)
+position = Vector2(0, 512)
+size = Vector2(20, 1080)
+
+[node name="DevBlock3" parent="." unique_id=1802287096 instance=ExtResource("2_0xm2m")]
+position = Vector2(1918, 514)
+size = Vector2(20, 1080)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1835216301]
 offset = Vector2(960, 540)
 position_smoothing_enabled = true
 
 [node name="Enemy" parent="." unique_id=745952900 instance=ExtResource("3_h2yge")]
-position = Vector2(754, 893)
+position = Vector2(111, 547)
+
+[node name="Enemy2" parent="." unique_id=2083773424 instance=ExtResource("3_h2yge")]
+position = Vector2(281, 559)
+
+[node name="Enemy3" parent="." unique_id=319966847 instance=ExtResource("3_h2yge")]
+position = Vector2(435, 558)
+
+[node name="Enemy4" parent="." unique_id=1132820290 instance=ExtResource("3_h2yge")]
+position = Vector2(128, 218)
+
+[node name="Enemy5" parent="." unique_id=931205271 instance=ExtResource("3_h2yge")]
+position = Vector2(1477, 555)
+
+[node name="Enemy6" parent="." unique_id=1817988630 instance=ExtResource("3_h2yge")]
+position = Vector2(1656, 549)
+
+[node name="Enemy7" parent="." unique_id=1409580244 instance=ExtResource("3_h2yge")]
+position = Vector2(1804, 222)
 
 [node name="P1_Spawn" type="Marker2D" parent="." unique_id=1889745537]
 position = Vector2(70, 850)
@@ -51,3 +93,12 @@ position = Vector2(2, 0)
 script = ExtResource("5_lquwl")
 
 [node name="BubbleParent" type="Node2D" parent="." unique_id=1674575069 groups=["bubble_parent"]]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1630136207]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1524850876]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 34
+text = "Score: "
+script = ExtResource("6_7mycd")

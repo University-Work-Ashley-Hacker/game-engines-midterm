@@ -14,8 +14,9 @@ var dir: float = 0
 @export var visual: Node2D
 @export var bubble_hitbox: Area2D
 @export var bubble_hitbox_col: CollisionShape2D
-@export var contains_enemy: bool = false
+@export var contained_enemy: Enemy
 
+var can_be_popped: bool = false
 var floating: bool = false
 var speed: float
 var float_speed: float
@@ -30,7 +31,13 @@ func  _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body.bubble(self)
-		contains_enemy = true
+		contained_enemy = body
+
+func pop() -> void:
+	if not can_be_popped: return
+	if contained_enemy:
+		contained_enemy.pop()
+	queue_free()
 
 func _physics_process(delta: float) -> void:
 	if not floating:
@@ -41,6 +48,7 @@ func _physics_process(delta: float) -> void:
 
 func _initial_bubble_timout() -> void:
 	move_component.velocity.x = 0
+	can_be_popped = true
 	dir = 0
 	floating = true
 	bubble_hitbox_col.set_deferred("disabled", true)

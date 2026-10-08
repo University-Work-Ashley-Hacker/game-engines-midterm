@@ -4,6 +4,7 @@ extends CharacterBody2D
 var bubbled: bool = false
 var in_bubble: Bubble
 @export var hitbox: HitboxComponent2D
+@export var hurtbox: HurtboxComponent2D
 @export var col: CollisionShape2D
 
 @export var bubble_timer: Timer
@@ -20,16 +21,19 @@ func bubble(bub: Bubble) -> void:
 	bubbled = true
 	in_bubble = bub
 	hitbox.active = false
+	hurtbox.set_deferred("active", true)
 	col.set_deferred("disabled", true)
 
 func unbubble() -> void:
 	bubbled = false
 	in_bubble = null
-	hitbox.active = true
+	hurtbox.active = false
+	hitbox.set_deferred("active", true)
 	col.set_deferred("disabled", false)
 
 func pop() -> void:
-	pass
+	Global.add_score(50)
+	queue_free()
 
 func _on_bubble_timer_timeout() -> void:
 	unbubble()

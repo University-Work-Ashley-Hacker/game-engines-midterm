@@ -6,14 +6,14 @@
 [ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="4_6487u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wf1bm"]
-radius = 25.0
+radius = 50.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_wf1bm"]
-radius = 25.0
-height = 50.0
+radius = 50.0
+height = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_neirl"]
-radius = 32.0
+radius = 50.0
 
 [node name="Bubble" type="CharacterBody2D" unique_id=1770187446 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer", "visual", "bubble_hitbox", "bubble_hitbox_col")]
 collision_layer = 16

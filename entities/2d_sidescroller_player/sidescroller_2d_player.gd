@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var stat_component: StatComponent
 @export var health_component: HealthComponent
 @export var respawn_point: Marker2D
+@export var pop_area: Area2D
+@export var pop_col: CollisionShape2D
 
 @export var player_2: bool = false
 @export var left_action: String = "p1_left"
@@ -27,6 +29,7 @@ func _ready() -> void:
 	speed = stat_component.stats["move_speed"]
 	jump_vel = stat_component.stats["jump_velocity"]
 	health_component.health_depleted.connect(_player_died)
+	pop_area.body_entered.connect(_on_pop_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -44,6 +47,7 @@ func _physics_process(delta: float) -> void:
 func _jump() -> void:
 	if is_on_floor():
 		move_component.velocity.y = jump_vel
+		
 
 func _shoot() -> void:
 	BubbleFactory.create_bubble(bubble_dir, position, player_2)
@@ -58,3 +62,8 @@ func _player_died() -> void:
 
 func _respawn_player() -> void:
 	global_position = respawn_point.global_position
+
+
+func _on_pop_body_entered(body: Node2D) -> void:
+	if body is Bubble:
+		body.pop()

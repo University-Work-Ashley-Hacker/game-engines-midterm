@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cpqris6g4mav5" path="res://common/components/core/hitbox_component_2d.gd" id="2_wqcwe"]
 [ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="3_msovg"]
 [ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="4_twyc1"]
+[ext_resource type="Script" uid="uid://ohndxl0y81dc" path="res://common/components/core/hurtbox_component_2d.gd" id="4_w4yt1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
 radius = 50.0
@@ -12,12 +13,13 @@ radius = 50.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
 radius = 44.181442
 
-[node name="Enemy" type="CharacterBody2D" unique_id=745952900 node_paths=PackedStringArray("hitbox", "col", "bubble_timer")]
+[node name="Enemy" type="CharacterBody2D" unique_id=745952900 node_paths=PackedStringArray("hitbox", "hurtbox", "col", "bubble_timer")]
 collision_layer = 4
 script = ExtResource("1_twyc1")
 hitbox = NodePath("Collision/HitboxComponent2D")
+hurtbox = NodePath("Collision/HurtboxComponent2D")
 col = NodePath("CollisionShape2D")
-bubble_timer = NodePath("Management/AITImer")
+bubble_timer = NodePath("Management/BubbleTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584254688]
 shape = SubResource("CircleShape2D_wqcwe")
@@ -40,6 +42,16 @@ active = true
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Collision/HitboxComponent2D" unique_id=2111902553]
 shape = SubResource("CircleShape2D_h2yge")
 
+[node name="HurtboxComponent2D" type="Area2D" parent="Collision" unique_id=708167890 node_paths=PackedStringArray("health_component")]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("4_w4yt1")
+health_component = NodePath("../../Management/HealthComponent")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collision/HurtboxComponent2D" unique_id=662776841]
+shape = SubResource("CircleShape2D_h2yge")
+disabled = true
+
 [node name="Management" type="Node" parent="." unique_id=1918389287]
 
 [node name="StatComponent" type="Node" parent="Management" unique_id=155062236]
@@ -53,4 +65,6 @@ script = ExtResource("4_twyc1")
 stat_component = NodePath("../StatComponent")
 metadata/_custom_type_script = "uid://dhmfg2xmqyv2c"
 
-[node name="AITImer" type="Timer" parent="Management" unique_id=2041634986]
+[node name="BubbleTimer" type="Timer" parent="Management" unique_id=2041634986]
+wait_time = 7.0
+one_shot = true
