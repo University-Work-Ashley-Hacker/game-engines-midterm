@@ -12,11 +12,14 @@ radius = 25.0
 radius = 25.0
 height = 50.0
 
-[node name="Bubble" type="Area2D" unique_id=1975863081 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer")]
+[node name="Bubble" type="CharacterBody2D" unique_id=1770187446 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer", "visual")]
+collision_layer = 16
+collision_mask = 17
 script = ExtResource("1_l7s23")
 move_component = NodePath("Management/MoveComponent2D")
 stat_component = NodePath("Management/StatComponent")
 initial_bubble_timer = NodePath("Management/InitialBubbleTimer")
+visual = NodePath("Visuals/MeshInstance2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=984094824]
 shape = SubResource("CircleShape2D_wf1bm")
