@@ -12,7 +12,10 @@ radius = 25.0
 radius = 25.0
 height = 50.0
 
-[node name="Bubble" type="CharacterBody2D" unique_id=1770187446 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer", "visual")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_neirl"]
+radius = 32.0
+
+[node name="Bubble" type="CharacterBody2D" unique_id=1770187446 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer", "visual", "bubble_hitbox", "bubble_hitbox_col")]
 collision_layer = 16
 collision_mask = 17
 script = ExtResource("1_l7s23")
@@ -20,6 +23,8 @@ move_component = NodePath("Management/MoveComponent2D")
 stat_component = NodePath("Management/StatComponent")
 initial_bubble_timer = NodePath("Management/InitialBubbleTimer")
 visual = NodePath("Visuals/MeshInstance2D")
+bubble_hitbox = NodePath("Collision/BubbleHiitbox")
+bubble_hitbox_col = NodePath("Collision/BubbleHiitbox/CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=984094824]
 shape = SubResource("CircleShape2D_wf1bm")
@@ -30,6 +35,13 @@ shape = SubResource("CircleShape2D_wf1bm")
 mesh = SubResource("SphereMesh_wf1bm")
 
 [node name="Collision" type="Node2D" parent="." unique_id=1298359596]
+
+[node name="BubbleHiitbox" type="Area2D" parent="Collision" unique_id=761018749]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/BubbleHiitbox" unique_id=2085379114]
+shape = SubResource("CircleShape2D_neirl")
 
 [node name="Management" type="Node" parent="." unique_id=847603274]
 

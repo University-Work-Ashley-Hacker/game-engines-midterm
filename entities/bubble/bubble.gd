@@ -12,6 +12,9 @@ var dir: float = 0
 @export var stat_component: StatComponent
 @export var initial_bubble_timer: Timer
 @export var visual: Node2D
+@export var bubble_hitbox: Area2D
+@export var bubble_hitbox_col: CollisionShape2D
+@export var contains_enemy: bool = false
 
 var floating: bool = false
 var speed: float
@@ -22,10 +25,12 @@ func  _ready() -> void:
 	speed = stat_component.stats["move_speed"]
 	float_speed = stat_component.stats["float_speed"]
 	initial_bubble_timer.timeout.connect(_initial_bubble_timout)
+	bubble_hitbox.body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
-		pass
+		body.bubble(self)
+		contains_enemy = true
 
 func _physics_process(delta: float) -> void:
 	if not floating:
@@ -38,3 +43,4 @@ func _initial_bubble_timout() -> void:
 	move_component.velocity.x = 0
 	dir = 0
 	floating = true
+	bubble_hitbox_col.set_deferred("disabled", true)
