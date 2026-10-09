@@ -15,6 +15,28 @@ Arrow Keys - Move
 ## Singleton
 Global script keeps track of the player's score and level, it is also a singleton, accessed anytime something would contribute to your score through the add_score() method.
 
+BubbleFactory is also a singleton, explained below.
+
+I've explained singletons so many times now and how Godot has it's autoload scripts and whatever. My 'Implementation' is clicking a few buttons and adding global.gd as an autoload. However just to be thorough, here is some sample code for a singleton in Unity
+
+```C#
+private class ClassName : MonoBehaviour
+{
+  ClassName instance;
+
+  void Awake()
+  {
+    if (instance == null)
+    {
+      instance = this;
+    }
+    else Destroy(this)
+  }
+}
+```
+
+
+
 ## Factory
 BubbleFactory class handles spawning bubbles with a few parameters you have to pass in. It's a autoload singleton so it can be accessed from anywhere.
 
