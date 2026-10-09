@@ -22,7 +22,7 @@ I've explained singletons so many times now and how Godot has it's autoload scri
 ```C#
 private class ClassName : MonoBehaviour
 {
-  ClassName instance;
+  public static ClassName instance;
 
   void Awake()
   {
