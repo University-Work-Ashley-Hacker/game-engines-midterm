@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlayerID" format=3 uid="uid://deypf0p1yobuj"]
+
+[ext_resource type="Script" uid="uid://cjdbm0askrhu4" path="res://common/resources/player_id.gd" id="1_xwpw1"]
+[ext_resource type="Texture2D" uid="uid://cukh4kc4rel7q" path="res://entities/player/p1_temp.png" id="2_5gv1f"]
+
+[resource]
+script = ExtResource("1_xwpw1")
+sprite = ExtResource("2_5gv1f")
+name = "P1"
+color = Color(0.007843138, 1, 0, 1)
+id = 1
+metadata/_custom_type_script = "uid://cjdbm0askrhu4"

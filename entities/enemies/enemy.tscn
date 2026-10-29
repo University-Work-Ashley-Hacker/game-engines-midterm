@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="3_msovg"]
 [ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="4_twyc1"]
 [ext_resource type="Script" uid="uid://ohndxl0y81dc" path="res://common/components/core/hurtbox_component_2d.gd" id="4_w4yt1"]
+[ext_resource type="Script" uid="uid://swhv3st1eoen" path="res://common/components/core/move_component2D.gd" id="7_ipr6v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqcwe"]
 radius = 50.0
@@ -13,12 +14,13 @@ radius = 50.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2yge"]
 radius = 44.181442
 
-[node name="Enemy" type="CharacterBody2D" unique_id=745952900 node_paths=PackedStringArray("hitbox", "hurtbox", "col", "bubble_timer")]
+[node name="Enemy" type="CharacterBody2D" unique_id=745952900 node_paths=PackedStringArray("hitbox", "hurtbox", "col", "move_component", "bubble_timer")]
 collision_layer = 4
 script = ExtResource("1_twyc1")
 hitbox = NodePath("Collision/HitboxComponent2D")
 hurtbox = NodePath("Collision/HurtboxComponent2D")
 col = NodePath("CollisionShape2D")
+move_component = NodePath("Management/MoveComponent2D")
 bubble_timer = NodePath("Management/BubbleTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584254688]
@@ -52,6 +54,9 @@ health_component = NodePath("../../Management/HealthComponent")
 shape = SubResource("CircleShape2D_h2yge")
 disabled = true
 
+[node name="RayCast2D" type="RayCast2D" parent="Collision" unique_id=496029300]
+target_position = Vector2(0, 2000)
+
 [node name="Management" type="Node" parent="." unique_id=1918389287]
 
 [node name="StatComponent" type="Node" parent="Management" unique_id=155062236]
@@ -66,5 +71,12 @@ stat_component = NodePath("../StatComponent")
 metadata/_custom_type_script = "uid://dhmfg2xmqyv2c"
 
 [node name="BubbleTimer" type="Timer" parent="Management" unique_id=2041634986]
-wait_time = 7.0
+wait_time = 4.0
 one_shot = true
+
+[node name="MoveComponent2D" type="Node" parent="Management" unique_id=1206243280 node_paths=PackedStringArray("actor", "stat_component")]
+unique_name_in_owner = true
+script = ExtResource("7_ipr6v")
+actor = NodePath("../..")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://swhv3st1eoen"

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d4dnk3c47l6g2"]
 
-[ext_resource type="Texture2D" uid="uid://csymv46hdn23x" path="res://misc/SteamHappy.png" id="1_2n2n2"]
+[ext_resource type="Script" uid="uid://dvrmhccwof1ui" path="res://entities/player/player.gd" id="1_qiwj3"]
 [ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="1_qrilc"]
-[ext_resource type="Script" uid="uid://dvrmhccwof1ui" path="res://entities/2d_sidescroller_player/sidescroller_2d_player.gd" id="1_up3c8"]
 [ext_resource type="Script" uid="uid://dhmfg2xmqyv2c" path="res://common/components/core/health_component.gd" id="2_2n2n2"]
+[ext_resource type="Texture2D" uid="uid://cukh4kc4rel7q" path="res://entities/player/p1_temp.png" id="2_m1j7x"]
 [ext_resource type="Script" uid="uid://ohndxl0y81dc" path="res://common/components/core/hurtbox_component_2d.gd" id="3_4k6dc"]
 [ext_resource type="Script" uid="uid://swhv3st1eoen" path="res://common/components/core/move_component2D.gd" id="3_up3c8"]
 [ext_resource type="Script" uid="uid://d2cbp7eaf67v1" path="res://common/components/core/lerp_component.gd" id="6_6j15o"]
@@ -11,14 +11,17 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7x0ag"]
 radius = 50.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1505119479 node_paths=PackedStringArray("move_component", "stat_component", "health_component", "pop_area", "pop_col")]
+[node name="Player" type="CharacterBody2D" unique_id=1505119479 node_paths=PackedStringArray("move_component", "stat_component", "health_component", "pop_area", "pop_col", "sprite_2d", "bubble_cooldown_timer")]
 collision_layer = 2
-script = ExtResource("1_up3c8")
+collision_mask = 33
+script = ExtResource("1_qiwj3")
 move_component = NodePath("Management/MoveComponent2D")
 stat_component = NodePath("Management/StatComponent")
 health_component = NodePath("Management/HealthComponent")
 pop_area = NodePath("Collision/PopArea")
 pop_col = NodePath("Collision/PopArea/CollisionShape2D2")
+sprite_2d = NodePath("Visuals/Sprite2D")
+bubble_cooldown_timer = NodePath("Management/BubbleCooldownTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1660671401]
 shape = SubResource("CircleShape2D_7x0ag")
@@ -26,8 +29,8 @@ shape = SubResource("CircleShape2D_7x0ag")
 [node name="Visuals" type="Node2D" parent="." unique_id=966469844]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=164990774]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_2n2n2")
+scale = Vector2(6.125, 6.125)
+texture = ExtResource("2_m1j7x")
 
 [node name="Collision" type="Node2D" parent="." unique_id=1968288455]
 
@@ -55,7 +58,6 @@ script = ExtResource("1_qrilc")
 stats = {
 "health": 1,
 "jump_velocity": -900.0,
-"lives": 2,
 "max_health": 1,
 "move_speed": 600.0
 }
@@ -78,4 +80,9 @@ metadata/_custom_type_script = "uid://swhv3st1eoen"
 script = ExtResource("6_6j15o")
 display = NodePath("../../Visuals/Sprite2D")
 move_to = NodePath("../..")
+lerp_speed = 50.0
 metadata/_custom_type_script = "uid://d2cbp7eaf67v1"
+
+[node name="BubbleCooldownTimer" type="Timer" parent="Management" unique_id=1581376820]
+wait_time = 0.2
+one_shot = true

@@ -1,104 +1,83 @@
 [gd_scene format=3 uid="uid://dcj8i1iuuxwol"]
 
-[ext_resource type="PackedScene" uid="uid://d4dnk3c47l6g2" path="res://entities/2d_sidescroller_player/side_scroller_player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://ccpkkxom288vs" path="res://entities/dev_block/dev_block.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://d677j00tb5t1" path="res://entities/enemies/enemy.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://q6pxj8u1eaa3" path="res://entities/bubble/bubble.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://d4dnk3c47l6g2" path="res://entities/player/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://8umuq8hbu6re" path="res://entities/player/input_handler.gd" id="1_kek77"]
+[ext_resource type="Resource" uid="uid://deypf0p1yobuj" path="res://common/resources/player_1.tres" id="2_5vw27"]
+[ext_resource type="Resource" uid="uid://cqcpssqrdehrx" path="res://common/resources/player_2.tres" id="3_kek77"]
+[ext_resource type="Script" uid="uid://cjdbm0askrhu4" path="res://common/resources/player_id.gd" id="5_272bh"]
 [ext_resource type="Script" uid="uid://4t2mjk38cwv6" path="res://common/classes/bubble_factory.gd" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://pcbhlg7fkeg2" path="res://entities/score_label/score_label.gd" id="6_7mycd"]
+[ext_resource type="Resource" uid="uid://voa87ek014hn" path="res://entities/score_pickup/main_pickup_pool.tres" id="8_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bpp20xgbebx7v" path="res://entities/score_pickup/score_pickup.tscn" id="8_efxa6"]
+[ext_resource type="Script" uid="uid://cjew5c4gdtexh" path="res://common/classes/pickup_factory.gd" id="8_kek77"]
 
 [node name="Main" type="Node2D" unique_id=1558682176]
-
-[node name="Player" parent="." unique_id=1492643892 node_paths=PackedStringArray("respawn_point") instance=ExtResource("1_ig7tw")]
-position = Vector2(229, 838)
-respawn_point = NodePath("../P1_Spawn")
-jump_action = "p1_jump"
-shoot_action = "p1_shoot"
-
-[node name="Player2" parent="." unique_id=1505119479 node_paths=PackedStringArray("respawn_point") instance=ExtResource("1_ig7tw")]
-position = Vector2(1463, 874.00006)
-rotation = -0.049040884
-respawn_point = NodePath("../P2_Spawn")
-player_2 = true
-left_action = "p2_left"
-right_action = "p2_right"
-jump_action = "p2_jump"
-shoot_action = "p2_shoot"
-
-[node name="DevBlock" parent="." unique_id=16391351 instance=ExtResource("2_0xm2m")]
-position = Vector2(956, 1008)
-
-[node name="DevBlock5" parent="." unique_id=784514308 instance=ExtResource("2_0xm2m")]
-position = Vector2(259, 637)
-size = Vector2(512, 32)
-
-[node name="DevBlock6" parent="." unique_id=1063934 instance=ExtResource("2_0xm2m")]
-position = Vector2(1661, 637)
-size = Vector2(512, 32)
-
-[node name="DevBlock7" parent="." unique_id=308746549 instance=ExtResource("2_0xm2m")]
-position = Vector2(1796, 311)
-size = Vector2(256, 32)
-
-[node name="DevBlock8" parent="." unique_id=1396966450 instance=ExtResource("2_0xm2m")]
-position = Vector2(122, 311)
-size = Vector2(256, 32)
-
-[node name="DevBlock4" parent="." unique_id=349438254 instance=ExtResource("2_0xm2m")]
-position = Vector2(956, 0)
-
-[node name="DevBlock2" parent="." unique_id=2093066493 instance=ExtResource("2_0xm2m")]
-position = Vector2(0, 512)
-size = Vector2(20, 1080)
-
-[node name="DevBlock3" parent="." unique_id=1802287096 instance=ExtResource("2_0xm2m")]
-position = Vector2(1918, 514)
-size = Vector2(20, 1080)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1835216301]
 offset = Vector2(960, 540)
 position_smoothing_enabled = true
 
-[node name="Enemy" parent="." unique_id=745952900 instance=ExtResource("3_h2yge")]
-position = Vector2(111, 547)
+[node name="Stage" type="Node2D" parent="." unique_id=2026589186]
 
-[node name="Enemy2" parent="." unique_id=2083773424 instance=ExtResource("3_h2yge")]
-position = Vector2(281, 559)
+[node name="Entities" type="Node2D" parent="." unique_id=423713879]
 
-[node name="Enemy3" parent="." unique_id=319966847 instance=ExtResource("3_h2yge")]
-position = Vector2(435, 558)
+[node name="Player" parent="Entities" unique_id=1492643892 node_paths=PackedStringArray("bubble_factory") instance=ExtResource("1_ig7tw")]
+position = Vector2(229, 838)
+player_id = ExtResource("2_5vw27")
+bubble_factory = NodePath("../../Management/BubbleFactory")
 
-[node name="Enemy4" parent="." unique_id=1132820290 instance=ExtResource("3_h2yge")]
-position = Vector2(128, 218)
+[node name="Player2" parent="Entities" unique_id=1505119479 node_paths=PackedStringArray("bubble_factory") instance=ExtResource("1_ig7tw")]
+position = Vector2(1463, 874.00006)
+rotation = -0.049040884
+scale = Vector2(0.9999999, 0.9999999)
+player_id = ExtResource("3_kek77")
+bubble_factory = NodePath("../../Management/BubbleFactory")
 
-[node name="Enemy5" parent="." unique_id=931205271 instance=ExtResource("3_h2yge")]
-position = Vector2(1477, 555)
+[node name="Pickups" type="Node2D" parent="Entities" unique_id=1121446419]
 
-[node name="Enemy6" parent="." unique_id=1817988630 instance=ExtResource("3_h2yge")]
-position = Vector2(1656, 549)
+[node name="Management" type="Node" parent="." unique_id=1785346567]
 
-[node name="Enemy7" parent="." unique_id=1409580244 instance=ExtResource("3_h2yge")]
-position = Vector2(1804, 222)
+[node name="InputHandler" type="Node" parent="Management" unique_id=1846914999]
+script = ExtResource("1_kek77")
+avaliable_ids = Array[ExtResource("5_272bh")]([ExtResource("2_5vw27"), ExtResource("3_kek77")])
 
-[node name="P1_Spawn" type="Marker2D" parent="." unique_id=1889745537]
-position = Vector2(70, 850)
-
-[node name="P2_Spawn" type="Marker2D" parent="." unique_id=569992815]
-position = Vector2(1850, 849)
-
-[node name="Actor" parent="." unique_id=1732808407 instance=ExtResource("4_1bvp3")]
-position = Vector2(2, 0)
-
-[node name="BubbleFactory" type="Node2D" parent="." unique_id=920205361]
+[node name="BubbleFactory" type="Node2D" parent="Management" unique_id=517757228 groups=["bubble_parent"]]
 script = ExtResource("5_lquwl")
+metadata/_custom_type_script = "uid://4t2mjk38cwv6"
 
-[node name="BubbleParent" type="Node2D" parent="." unique_id=1674575069 groups=["bubble_parent"]]
+[node name="PickupFactory" type="Node2D" parent="Management" unique_id=1524817622 node_paths=PackedStringArray("pickup_parent")]
+script = ExtResource("8_kek77")
+pickup_scene = ExtResource("8_efxa6")
+main_pickup_pool = ExtResource("8_4c57u")
+pickup_parent = NodePath("../../Entities/Pickups")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1630136207]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1630136207]
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=1524850876]
+[node name="Label" type="Label" parent="UI" unique_id=1524850876]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 34
 text = "Score: "
 script = ExtResource("6_7mycd")
+player_id = ExtResource("2_5vw27")
+
+[node name="Label2" type="Label" parent="UI" unique_id=295898633]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -109.0
+offset_bottom = 47.458332
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 34
+text = "Score: "
+horizontal_alignment = 2
+script = ExtResource("6_7mycd")
+player_id = ExtResource("3_kek77")
+
+[node name="Actor" type="Node2D" parent="." unique_id=2040023598]
+
+[node name="Visuals" type="Node2D" parent="Actor" unique_id=883750651]
+
+[node name="Collision" type="Node2D" parent="Actor" unique_id=508384435]
+
+[node name="Management" type="Node" parent="Actor" unique_id=1901528684]

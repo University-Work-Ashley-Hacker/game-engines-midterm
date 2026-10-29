@@ -15,7 +15,7 @@ height = 100.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_neirl"]
 radius = 50.0
 
-[node name="Bubble" type="CharacterBody2D" unique_id=1770187446 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer", "visual", "bubble_hitbox", "bubble_hitbox_col")]
+[node name="Bubble" type="CharacterBody2D" unique_id=1770187446 node_paths=PackedStringArray("move_component", "stat_component", "initial_bubble_timer", "visual", "bubble_hitbox", "bubble_hitbox_col") groups=["bubble"]]
 collision_layer = 16
 collision_mask = 17
 script = ExtResource("1_l7s23")

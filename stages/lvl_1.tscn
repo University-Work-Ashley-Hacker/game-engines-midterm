@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://da2mb7denvrv8"]
+
+[ext_resource type="PackedScene" uid="uid://ccpkkxom288vs" path="res://entities/dev_block/dev_block.tscn" id="1_bw3al"]
+[ext_resource type="Script" uid="uid://en42p37t04nc" path="res://stages/stage.gd" id="1_rx4ey"]
+[ext_resource type="PackedScene" uid="uid://d677j00tb5t1" path="res://entities/enemies/enemy.tscn" id="3_wrbwe"]
+
+[node name="Level1" type="Node2D" unique_id=2065146349 node_paths=PackedStringArray("spawns")]
+script = ExtResource("1_rx4ey")
+spawns = [NodePath("Environment/P1_Spawn"), NodePath("Environment/P2_Spawn")]
+
+[node name="Environment" type="Node2D" parent="." unique_id=3053584]
+
+[node name="DevBlock" parent="Environment" unique_id=16391351 instance=ExtResource("1_bw3al")]
+position = Vector2(960, 1070)
+size = Vector2(1920, 20)
+
+[node name="DevBlock5" parent="Environment" unique_id=175736576 instance=ExtResource("1_bw3al")]
+position = Vector2(259, 776)
+size = Vector2(512, 32)
+
+[node name="DevBlock6" parent="Environment" unique_id=1147844340 instance=ExtResource("1_bw3al")]
+position = Vector2(1661, 764)
+size = Vector2(512, 32)
+
+[node name="DevBlock7" parent="Environment" unique_id=504467817 instance=ExtResource("1_bw3al")]
+position = Vector2(1796, 481)
+size = Vector2(256, 32)
+
+[node name="DevBlock8" parent="Environment" unique_id=1562281131 instance=ExtResource("1_bw3al")]
+position = Vector2(122, 481)
+size = Vector2(256, 32)
+
+[node name="DevBlock4" parent="Environment" unique_id=988115733 instance=ExtResource("1_bw3al")]
+position = Vector2(960, 10)
+size = Vector2(1920, 20)
+
+[node name="DevBlock2" parent="Environment" unique_id=709753490 instance=ExtResource("1_bw3al")]
+position = Vector2(10, 540)
+size = Vector2(20, 1080)
+
+[node name="DevBlock3" parent="Environment" unique_id=1760446721 instance=ExtResource("1_bw3al")]
+position = Vector2(1910, 540)
+size = Vector2(20, 1080)
+
+[node name="P1_Spawn" type="Marker2D" parent="Environment" unique_id=1516401159]
+position = Vector2(70, 850)
+
+[node name="P2_Spawn" type="Marker2D" parent="Environment" unique_id=373013315]
+position = Vector2(1850, 849)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1805824408]
+
+[node name="Enemy" parent="Enemies" unique_id=745952900 instance=ExtResource("3_wrbwe")]
+position = Vector2(115, 689)
+
+[node name="Enemy2" parent="Enemies" unique_id=1862950141 instance=ExtResource("3_wrbwe")]
+position = Vector2(267, 672)
+
+[node name="Enemy4" parent="Enemies" unique_id=1476706336 instance=ExtResource("3_wrbwe")]
+position = Vector2(128, 368)
+
+[node name="Enemy5" parent="Enemies" unique_id=653097653 instance=ExtResource("3_wrbwe")]
+position = Vector2(1590, 659)
+
+[node name="Enemy6" parent="Enemies" unique_id=338784480 instance=ExtResource("3_wrbwe")]
+position = Vector2(1787, 672)
+
+[node name="Enemy7" parent="Enemies" unique_id=1722979611 instance=ExtResource("3_wrbwe")]
+position = Vector2(1823, 366)

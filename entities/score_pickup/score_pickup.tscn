@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bpp20xgbebx7v"]
+
+[ext_resource type="Script" uid="uid://47sr2f7tie8n" path="res://entities/score_pickup/score_pickup.gd" id="1_tn4ro"]
+[ext_resource type="Texture2D" uid="uid://cukh4kc4rel7q" path="res://entities/player/p1_temp.png" id="2_e3u66"]
+[ext_resource type="Script" uid="uid://swhv3st1eoen" path="res://common/components/core/move_component2D.gd" id="3_hp6wo"]
+[ext_resource type="Texture2D" uid="uid://csymv46hdn23x" path="res://misc/SteamHappy.png" id="3_j1s5p"]
+[ext_resource type="Script" uid="uid://db5bkie8hvadi" path="res://common/components/core/stat_component.gd" id="4_j1s5p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7x0ag"]
+radius = 32.0
+
+[node name="Pickup" type="CharacterBody2D" unique_id=1764514127 node_paths=PackedStringArray("_area", "_sprite_2d", "_move_component")]
+collision_layer = 0
+script = ExtResource("1_tn4ro")
+sprite = ExtResource("2_e3u66")
+_area = NodePath("Collision/Area2D")
+_sprite_2d = NodePath("Visuals/Sprite2D")
+_move_component = NodePath("Management/MoveComponent2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=438268637]
+shape = SubResource("CircleShape2D_7x0ag")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1225819978]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=2005029614]
+scale = Vector2(0.32000005, 0.32)
+texture = ExtResource("3_j1s5p")
+
+[node name="Collision" type="Node2D" parent="." unique_id=2010721778]
+
+[node name="Area2D" type="Area2D" parent="Collision" unique_id=1788993959]
+collision_layer = 32
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision/Area2D" unique_id=2023254889]
+shape = SubResource("CircleShape2D_7x0ag")
+
+[node name="Management" type="Node" parent="." unique_id=1763233077]
+
+[node name="MoveComponent2D" type="Node" parent="Management" unique_id=737058428 node_paths=PackedStringArray("actor", "stat_component")]
+unique_name_in_owner = true
+script = ExtResource("3_hp6wo")
+actor = NodePath("../..")
+stat_component = NodePath("../StatComponent")
+metadata/_custom_type_script = "uid://swhv3st1eoen"
+
+[node name="StatComponent" type="Node" parent="Management" unique_id=570283375]
+unique_name_in_owner = true
+script = ExtResource("4_j1s5p")
+metadata/_custom_type_script = "uid://db5bkie8hvadi"

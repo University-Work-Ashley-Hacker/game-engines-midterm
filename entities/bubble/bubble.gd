@@ -21,6 +21,8 @@ var floating: bool = false
 var speed: float
 var float_speed: float
 
+var player: PlayerID
+
 func  _ready() -> void:
 	#area_entered.connect(_on_body_entered)
 	speed = stat_component.stats["move_speed"]
@@ -41,7 +43,7 @@ func pop() -> void:
 		contained_enemy.pop()
 	queue_free()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not floating:
 		move_component.velocity.x = speed * dir
 	else:
