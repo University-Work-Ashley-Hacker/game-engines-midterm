@@ -18,7 +18,9 @@ Start - Start Button
 # Explanation
 ## Singleton
 The GameManager is responsible for keeping track of the current stage, loading, and unloading stages.
-It’s the GameManager it manages the game’s flow<img width="1138" height="645" alt="2026_10_26-23:49:42" src="https://github.com/user-attachments/assets/40bcf088-2e8d-4e85-819d-a48748874373" />
+It’s the GameManager it manages the game’s flow
+<img width="839" height="435" alt="image" src="https://github.com/user-attachments/assets/847513d6-d8d5-41bc-b9b4-a0c065bed687" />
+
 
 
 InputHandler is also a singleton, explained below.
