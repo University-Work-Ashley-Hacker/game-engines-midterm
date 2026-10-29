@@ -1,3 +1,4 @@
+<img width="1342" height="551" alt="2026_10_29-17:13:07" src="https://github.com/user-attachments/assets/4843f8fd-a56e-4c32-b0dc-caa70e669185" />
 # Final Project Check In
 
 In order to connect a controller to a character, you have to press the button labelled Start below.
@@ -60,6 +61,8 @@ While not the full “Command pattern design” I used important elements of it 
 <img width="724" height="565" alt="2026_10_27-08:57:34" src="https://github.com/user-attachments/assets/6e87247f-3f2b-4b84-b170-693cd6454fa0" />
 <img width="1239" height="219" alt="2026_10_27-09:02:02" src="https://github.com/user-attachments/assets/fe007dbf-732d-4f1c-9fcd-78148c4cf391" />
 <img width="845" height="178" alt="2026_10_27-08:57:50" src="https://github.com/user-attachments/assets/f91eb03e-a071-4e0a-b30d-d209067e1650" />
+
+<img width="1342" height="551" alt="2026_10_29-17:13:07" src="https://github.com/user-attachments/assets/8d5a8d20-7733-4258-8adc-710a15322d11" />
 
 
 ## Plugin
