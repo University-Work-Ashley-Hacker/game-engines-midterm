@@ -1,21 +1,27 @@
-# game-engines-midterm
+# Final Project Check In
+
+In order to connect a controller to a character, you have to press the button labelled Start below.
 
 # Controls
-Player 1
-WASD - Move
-Z - Jump
-X - Shoot
-
-Player 2
-Arrow Keys - Move
-, - Jump
-. - Shoot
+### Keyboard
+Left - A
+Right - D
+Bubble - S
+Jump - W
+Start - LShift
+### Controller
+Movement - Left Stick
+Bubble - West Button
+Jump - South Button
+Start - Start Button
 
 # Explanation
 ## Singleton
-Global script keeps track of the player's score and level, it is also a singleton, accessed anytime something would contribute to your score through the add_score() method.
+The GameManager is responsible for keeping track of the current stage, loading, and unloading stages.
+It’s the GameManager it manages the game’s flow<img width="1138" height="645" alt="2026_10_26-23:49:42" src="https://github.com/user-attachments/assets/40bcf088-2e8d-4e85-819d-a48748874373" />
 
-BubbleFactory is also a singleton, explained below.
+
+InputHandler is also a singleton, explained below.
 
 I've explained singletons so many times now and how Godot has it's autoload scripts and whatever. My 'Implementation' is clicking a few buttons and adding global.gd as an autoload. However just to be thorough, here is some sample code for a singleton in Unity
 
@@ -31,15 +37,37 @@ private class ClassName : MonoBehaviour
       instance = this;
     }
     else Destroy(this)
-  }
+  }<img width="550" height="262" alt="2026_10_27-08:58:12" src="https://github.com/user-attachments/assets/0499ff83-e2a2-47bc-87d2-f035e1665304" />
+
 }
 ```
 
 
-
 ## Factory
-BubbleFactory class handles spawning bubbles with a few parameters you have to pass in. It's a autoload singleton so it can be accessed from anywhere.
+The pickups that spawn all the time are the perfect use for a factory. Every pickup is basically the same, it has a sprite and a point value. In my implementation calling PickupFactory.spawn_random_pickup() will spawn a random pickup from a predefined list.
 
-I planned on creating a EnemyFactory that handles spawning enemies, however I didn't get more than 1 enemy complete, and Bubble Bobble wouldn't even use one anyways. Each level has predefined enemies and spawn points so if you were going for a perfect recreation I don't think a Factory would be the play since you could just have prefabs in the scenes already.
+<img width="1138" height="645" alt="2026_10_26-23:49:42" src="https://github.com/user-attachments/assets/a753b9c1-9110-4094-869c-fdcf4256101b" />
 
-If I had more time I would have created pickups that give you score, and use a factory for that. Bubble bobble has a lot of different pickups, all of which have a different sprite and a total score they award. In hindsight I would have worked on this first to have a good factory demonstration instead of making the Enemy Bubbling mechanic, popping, etc. 
+
+## Command Pattern
+Instead of calling a function directly, a function is stored in an object that can be called with execute(). They provide a layer of abstraction between the sender and receiver. The sender just has to worry about sending the message at the right time, and the receiver only has to worry about what happens when it’s executed. 
+
+While not the full “Command pattern design” I used important elements of it when adding proper multiplayer support. Decoupled Input Handling and controlling the player. Achieved by having separate input events on the PlayerID. InputHandler handles inputs and calls input_signals on the PlayerID
+
+<img width="550" height="262" alt="2026_10_27-08:58:12" src="https://github.com/user-attachments/assets/b76ef6ac-56fa-44e7-a4c5-435bf8523f76" />
+<img width="724" height="565" alt="2026_10_27-08:57:34" src="https://github.com/user-attachments/assets/6e87247f-3f2b-4b84-b170-693cd6454fa0" />
+<img width="1239" height="219" alt="2026_10_27-09:02:02" src="https://github.com/user-attachments/assets/fe007dbf-732d-4f1c-9fcd-78148c4cf391" />
+<img width="845" height="178" alt="2026_10_27-08:57:50" src="https://github.com/user-attachments/assets/f91eb03e-a071-4e0a-b30d-d209067e1650" />
+
+
+## Plugin
+I made a scene builder plugin
+(this was for lab assignment 1)
+
+Press Alt+Shift+2 to create a 2D scene
+Press Alt+Shift+3 to create a 3D scene
+
+It’s not a DLL (idk if this counts) (plus I probably should make a dll just so I know how and can do it cause i totally forgot to do the in class assignment from last week’s lecture.)
+
+<img width="222" height="47" alt="2026_10_26-23:54:56" src="https://github.com/user-attachments/assets/efacb3f6-a84f-4f5f-826d-dcab38a3f4bc" />
+<img width="513" height="494" alt="2026_10_26-235648-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/234dece3-86b8-49d9-83de-5db10ec4f49a" />
