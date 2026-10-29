@@ -1,4 +1,3 @@
-<img width="1342" height="551" alt="2026_10_29-17:13:07" src="https://github.com/user-attachments/assets/4843f8fd-a56e-4c32-b0dc-caa70e669185" />
 # Final Project Check In
 
 In order to connect a controller to a character, you have to press the button labelled Start below.
